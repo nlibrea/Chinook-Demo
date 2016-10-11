@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\CustomerManager.cs" />
+    <Compile Include="BLL\Security\RoleManager.cs" />
     <Compile Include="BLL\Security\UserManager.cs" />
     <Compile Include="DAL\Security\ApplicationDbContext.cs" />
     <Compile Include="Entities\Album.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Entities\MediaType.cs" />
     <Compile Include="Entities\Playlist.cs" />
     <Compile Include="Entities\Security\ApplicationUser.cs" />
+    <Compile Include="Entities\Security\SecurityRoles.cs" />
     <Compile Include="Entities\Track.cs" />
     <Compile Include="Entities\ViewModels\CustomerProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
