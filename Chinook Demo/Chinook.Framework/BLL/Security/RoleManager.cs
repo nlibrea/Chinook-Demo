@@ -31,7 +31,7 @@ namespace Chinook.Framework.BLL.Security
         public List<RoleProfile> ListAllRoles()
         {
             var um = new UserManager();
-            var result = from data in Roles
+            var result = from data in Roles.ToList() // force the query of data first and then get the results in-memory roles=> List<T>
                          select new RoleProfile()
                          {
                              RoleId = data.Id,
