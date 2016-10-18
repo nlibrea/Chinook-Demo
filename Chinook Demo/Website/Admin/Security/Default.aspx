@@ -19,7 +19,9 @@
                     TBA: Show website user details
                 </div>
                 <div class="tab-pane fade" id="roles">
-                    <asp:ListView ID="RoleListView" runat="server" DataSourceID="RoleDataSource" DataKeyNames="RoleId" ItemType="Chinook.Framework.Entities.Security.RoleProfile">
+                    <asp:ListView ID="RoleListView" runat="server" InsertItemPosition="LastItem"
+                        DataSourceID="RoleDataSource" 
+                        DataKeyNames="RoleId" ItemType="Chinook.Framework.Entities.Security.RoleProfile">
                         <LayoutTemplate>
                             <div class="row bg-info">
                                 <div class="col-md-3 h4">Action</div>
@@ -47,6 +49,24 @@
                                 </div>
                             </div>
                         </ItemTemplate>
+
+                        <InsertItemTemplate>
+                            <hr />
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <asp:LinkButton runat="server" ID="InsertButton" 
+                                        CssClass="btn btn-primary"
+                                        CommandName="Insert" Text="Add Role" />
+                                    <asp:LinkButton runat="server" ID="CancelButton" 
+                                        CssClass="btn btn-default"
+                                        CommandName="Cancel" Text="Clear" />
+
+                                </div>
+                                <div class="col-md-3">
+                                    <asp:TextBox runat="server"  ID="RoleNameTextBox" placeholder="Role Name" Text="<%# BindItem.RoleName %>" />   
+                                </div>
+                            </div>
+                        </InsertItemTemplate>
 
                     </asp:ListView>
 
