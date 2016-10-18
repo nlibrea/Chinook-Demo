@@ -41,6 +41,9 @@ namespace Chinook.Framework.BLL.Security
             return result.ToList();
         }
 
+
+
+
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
         public void AddRole(RoleProfile role)
         {

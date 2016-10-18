@@ -31,7 +31,7 @@ namespace Chinook.Framework.BLL.Security
 
         public void AddWebMaster()
         {
-            if(!Users.Any(u=>u.UserName.Equals(STR_WEBMASTER_USERNAME)))
+            if (!Users.Any(u => u.UserName.Equals(STR_WEBMASTER_USERNAME)))
             {
                 var webMasterAccount = new ApplicationUser()
                 {
@@ -66,21 +66,21 @@ namespace Chinook.Framework.BLL.Security
             // The following portion uses the ChinookContext to get first/last names of users
             using (var context = new ChinookContext())
             {
-                foreach(var person in result)
+                foreach (var person in result)
                 {
-                    if(person.EmployeeId.HasValue)
+                    if (person.EmployeeId.HasValue)
                     {
                         var employee = context.Employees.Find(person.EmployeeId);
-                        if(employee != null) // employee was found
+                        if (employee != null) // employee was found
                         {
                             person.FirstName = employee.FirstName;
-                            person.LastName = employee.LastName;                       
+                            person.LastName = employee.LastName;
                         }
                     }
-                    else if(person.CustomerId.HasValue)
+                    else if (person.CustomerId.HasValue)
                     {
                         var customer = context.Customers.Find(person.CustomerId);
-                        if(customer != null) // customer was found
+                        if (customer != null) // customer was found
                         {
                             person.FirstName = customer.FirstName;
                             person.LastName = customer.LastName;
@@ -90,8 +90,23 @@ namespace Chinook.Framework.BLL.Security
             }
 
 
-                return result.ToList();
+            return result.ToList();
         }
+
+
+        [DataObjectMethod(DataObjectMethodType.Insert, true)]
+        public void AddUser(UserProfile userInfo)
+        {
+            // TODO:
+        }
+
+
+        [DataObjectMethod(DataObjectMethodType.Delete, true)]
+        public void RemoveUser(UserProfile userInfo)
+        {
+            // TODO:
+        }
+
         #endregion
 
     }
