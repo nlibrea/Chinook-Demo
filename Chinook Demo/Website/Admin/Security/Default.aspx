@@ -63,11 +63,13 @@
                                     <asp:TextBox runat="server" ID="UserNameTextBox" placeholder="User Name" />
                                 </div>
                                 <div class="col-md-5">
-                                    <asp:TextBox runat="server" ID="EmailTextBox" placeholder="Email Address"           TextMode="Email" />
+                                    <asp:TextBox runat="server" ID="EmailTextBox" placeholder="Email Address" TextMode="Email" />
                                 </div>
                                 <div class="col-md-3">
-                                    TODO: checkboxes for role names
+                                    <%--TODO: checkboxes for role names--%>
+                                    <asp:CheckBoxList ID="RoleMemberships" runat="server" DataSource="<%# GetRoleNames() %>">
 
+                                    </asp:CheckBoxList>
                                 </div>
                             </div>
                         </InsertItemTemplate>
