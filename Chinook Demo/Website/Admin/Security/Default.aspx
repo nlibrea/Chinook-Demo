@@ -18,6 +18,7 @@
                 <div class="tab-pane fade in active" id="users">
                     <asp:ListView ID="UserListView" runat="server" DataSourceID="UserProfileDataSource" DataKeyNames="UserId"
                         InsertItemPosition="LastItem"
+                        OnItemInserting="UserListView_ItemInserting"
                         ItemType="Chinook.Framework.Entities.Security.UserProfile">
                         <LayoutTemplate>
                             <div class="row bg-info">
@@ -60,10 +61,10 @@
 
                                 </div>
                                 <div class="col-md-2">
-                                    <asp:TextBox runat="server" ID="UserNameTextBox" placeholder="User Name" />
+                                    <asp:TextBox runat="server" ID="UserNameTextBox" placeholder="User Name" Text="<%# BindItem.UserName %>" />
                                 </div>
                                 <div class="col-md-5">
-                                    <asp:TextBox runat="server" ID="EmailTextBox" placeholder="Email Address" TextMode="Email" />
+                                    <asp:TextBox runat="server" ID="EmailTextBox" placeholder="Email Address" TextMode="Email" Text="<%# BindItem.Email %>"/>
                                 </div>
                                 <div class="col-md-3">
                                     <%--TODO: checkboxes for role names--%>
