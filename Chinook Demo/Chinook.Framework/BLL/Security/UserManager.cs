@@ -97,7 +97,20 @@ namespace Chinook.Framework.BLL.Security
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
         public void AddUser(UserProfile userInfo)
         {
-            // TODO:
+            // Convert the DTO data I received into my Entity data for ApplicationUser
+            var userAccount = new ApplicationUser()
+            {
+                UserName = userInfo.UserName,
+                Email = userInfo.Email
+            };
+
+            // add the user account 
+            this.Create(userAccount, STR_DEFAULT_PASSWORD);
+            // add this user to all the roles that were specified in the userProfile
+            foreach (string roleName in userInfo.RoleMemberships)
+                this.AddToRole(userAccount.Id, roleName);
+
+
         }
 
 
