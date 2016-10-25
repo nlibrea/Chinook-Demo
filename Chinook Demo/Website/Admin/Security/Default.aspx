@@ -132,8 +132,37 @@
 
                     <asp:ObjectDataSource ID="RoleDataSource" runat="server" DataObjectTypeName="Chinook.Framework.Entities.Security.RoleProfile" DeleteMethod="RemoveRole" InsertMethod="AddRole" OldValuesParameterFormatString="original_{0}" SelectMethod="ListAllRoles" TypeName="Chinook.Framework.BLL.Security.RoleManager"></asp:ObjectDataSource>
                 </div>
-                <div class="tab-pane fade" id="unregisteres">
-                    TBA: Show unregistered Customers and Employees
+
+
+
+
+                <div class="tab-pane fade" id="unregistered">
+                    <asp:GridView ID="UnregisteredUsersGridView" runat="server" 
+                         CssClass="table table-hover" AutoGenerateColumns="False" 
+                         DataSourceID="UnregisteredUserDataSource"
+                         ItemType="Chinook.Framework.Entities.Security.UnregisteredUser" 
+                         AllowPaging="True" DataKeyNames="Id"
+                         OnSelectedIndexChanging="UnregisteredUsersGridView_SelectedIndexChanging">
+                        <Columns>
+                            <asp:CommandField ShowSelectButton="True"></asp:CommandField>
+                            <asp:BoundField DataField="UserType" HeaderText="User Type" SortExpression="UserType"></asp:BoundField>
+                            <asp:BoundField DataField="FirstName" HeaderText="First Name" SortExpression="FirstName"></asp:BoundField>
+                            <asp:BoundField DataField="LastName" HeaderText="Last Name" SortExpression="LastName"></asp:BoundField>
+                            <asp:TemplateField HeaderText="Assigned UserName" SortExpression="AssignedUserName">
+                                <ItemTemplate>
+                                    <asp:TextBox runat="server" Text='<%# Bind("AssignedUserName") %>' ID="GivenUserName"></asp:TextBox>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Assigned Email" SortExpression="AssignedEmail">
+                                <ItemTemplate>
+                                    <asp:TextBox runat="server" Text='<%# Bind("AssignedEmail") %>' ID="GivenEmail"></asp:TextBox>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
+                    <asp:ObjectDataSource runat="server" ID="UnregisteredUserDataSource" OldValuesParameterFormatString="original_{0}"
+                         SelectMethod="ListAllUnregisteredUsers" TypeName="Chinook.Framework.BLL.Security.UserManager">
+                    </asp:ObjectDataSource>
                 </div>
             </div>
 

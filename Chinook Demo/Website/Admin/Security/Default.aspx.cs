@@ -1,4 +1,5 @@
 ﻿using Chinook.Framework.BLL.Security;
+using Chinook.Framework.Entities.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,4 +36,40 @@ public partial class Admin_Security_Default : System.Web.UI.Page
         e.Values["RoleMemberships"] = addToRoles;
         //      \  ^^ Property Name of the user profile class/
     }
+
+
+    protected void UnregisteredUsersGridView_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+    {
+        UnregisteredUsersGridView.SelectedIndex = e.NewSelectedIndex;
+        GridViewRow row = UnregisteredUsersGridView.SelectedRow;
+        if (row != null)
+        {
+            string userName = null, email = null;
+            UnregisteredUserType userType;
+            TextBox input;
+            input = row.FindControl("GivenUserName") as TextBox;
+            if (input != null)
+                userName = input.Text;
+            input = row.FindControl("GivenEmail") as TextBox;
+            if (input != null)
+                email = input.Text;
+            userType = (UnregisteredUserType)Enum.Parse(typeof(UnregisteredUserType), row.Cells[1].Text);
+            UnregisteredUser user = new UnregisteredUser()
+            {
+                Id = int.Parse(UnregisteredUsersGridView.SelectedDataKey.Value.ToString()),
+                UserType = userType,
+                FirstName = row.Cells[2].Text,
+                LastName = row.Cells[3].Text,
+                AssignedUserName = userName,
+                AssignedEmail = email
+            };
+
+            UserManager manager = new UserManager();
+            manager.RegisterUser(user);
+            DataBind();
+        }
+    }
+
+
+
 }
