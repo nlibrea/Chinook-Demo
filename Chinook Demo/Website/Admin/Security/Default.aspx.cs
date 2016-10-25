@@ -11,6 +11,10 @@ public partial class Admin_Security_Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        // Force all users who are not in the WebsiteAdmins role
+        // to go back to the homepage.
+        if (!User.IsInRole("WebsiteAdmins"))
+            Response.Redirect("~/Default.aspx", true);
         
     }
 
