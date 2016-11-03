@@ -6,7 +6,7 @@
 
 namespace Chinook.Framework.Entities
 {
-    [Table("Track")] // Identifies which DB table this class maps to
+    [Table("Tracks")] // Identifies which DB table this class maps to
     public partial class Track
     {
         [Key] // Identifies that this property maps as a ProimaryKey in the DB
